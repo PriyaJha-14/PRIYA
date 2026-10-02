@@ -4,30 +4,37 @@ import {
   ChevronDown,
   Github,
   Linkedin,
-  Twitter,
   Download,
+  Mail,
 } from "lucide-react";
 import { AnimatedBorderButton } from "../components/AnimatedBorderButton";
 
 const skills = [
-  "React",
-  "Next.js",
+  "Python",
+  "SQL",
+  "Power BI",
+  "Excel",
+  "Pandas",
+  "Numpy",
+  "Matplotlib",
+  "Seaborn",
+  "MySQL",
+  "Data Cleaning",
+  "EDA",
+  "Data Visualization",
+  "Dashboards",
+  "Statistics",
+  "Jupyter Notebook",
   "TypeScript",
   "Node.js",
-  "GraphQL",
+  "React",
   "PostgreSQL",
   "MongoDB",
-  "Redis",
-  "Docker",
   "AWS",
-  "Vercel",
   "Tailwind CSS",
   "Prisma",
-  "Jest",
-  "Cypress",
-  "Figma",
   "Git",
-  "GitHub Actions",
+  "GitHub",
 ];
 
 export const Hero = () => {
@@ -52,9 +59,8 @@ export const Hero = () => {
               backgroundColor: "#20B2A6",
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animation: `slow-drift ${
-                15 + Math.random() * 20
-              }s ease-in-out infinite`,
+              animation: `slow-drift ${15 + Math.random() * 20
+                }s ease-in-out infinite`,
               animationDelay: `${Math.random() * 5}s`,
             }}
           />
@@ -69,25 +75,26 @@ export const Hero = () => {
             <div className="animate-fade-in">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-             ● Data Analyst · SQL · Python · Power BI
+                ● Data Analyst · SQL · Python · Power BI
               </span>
             </div>
 
             {/* Headline */}
             <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in animation-delay-100">
-                Crafting <span className="text-primary glow-text">digital</span>
+                Transforming <span className="text-primary glow-text">data</span>
                 <br />
-                experiences with
+                into insights that drive
                 <br />
                 <span className="font-serif italic font-normal text-white">
-                  precision.
+                  decisions.
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
-                Hi, I'm Pedro Machado — a software engineer specializing in
-                React, Next.js, and TypeScript. I build scalable, performant web
-                applications that users love.
+                Hi, I'm Priya Jha — a Data Analyst passionate about transforming
+                raw data into meaningful insights. I use SQL, Python, Excel,
+                and Power BI to uncover trends, solve business problems,
+                and support data-driven decisions.
               </p>
             </div>
 
@@ -98,17 +105,17 @@ export const Hero = () => {
               </Button>
               <AnimatedBorderButton>
                 <Download className="w-5 h-5" />
-                Download CV
+                Download Resume
               </AnimatedBorderButton>
             </div>
-
+ 
             {/* Social Links */}
             <div className="flex items-center gap-4 animate-fade-in animation-delay-400">
-              <span className="text-sm text-muted-foreground">Follow me: </span>
+              <span className="text-sm text-muted-foreground">Connect: </span>
               {[
-                { icon: Github, href: "#" },
-                { icon: Linkedin, href: "#" },
-                { icon: Twitter, href: "#" },
+                { icon: Github, href: "https://github.com/PriyaJha-14" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/priya-jha-b5667a237/?isSelfProfile=true" },
+                { icon: Mail, href: "pjha63172@gmail.com" },
               ].map((social, idx) => (
                 <a
                   key={idx}
@@ -132,8 +139,8 @@ export const Hero = () => {
               />
               <div className="relative glass rounded-3xl p-2 glow-border">
                 <img
-                  src="/profile-photo.jpg"
-                  alt="Pedro Machado"
+                  src="/profile-photo.png"
+                  alt="Priya Jha"
                   className="w-full aspect-[4/5] object-cover rounded-2xl"
                 />
 
@@ -142,7 +149,7 @@ export const Hero = () => {
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
                     <span className="text-sm font-medium">
-                      Available for work
+                      Open to opportunities
                     </span>
                   </div>
                 </div>
@@ -150,7 +157,7 @@ export const Hero = () => {
                 <div className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3 animate-float animation-delay-500">
                   <div className="text-2xl font-bold text-primary">5+</div>
                   <div className="text-xs text-muted-foreground">
-                    Years Exp.
+                   Projects Built.
                   </div>
                 </div>
               </div>
