@@ -1,15 +1,39 @@
 import { Download } from "lucide-react";
 
-export const AnimatedBorderButton = ({ children }) => {
+// Path of your resume inside the "public" folder.
+// Change the file name here if yours is different.
+const RESUME_PATH = "/Priya_Jha_Resume_.pdf";
+
+export const AnimatedBorderButton = ({
+  children,
+  href,
+  variant, // use variant="resume" for the Download Resume button
+  className = "",
+  ...props
+}) => {
+  const isResume = variant === "resume";
+  const link = isResume ? RESUME_PATH : href;
+
+  // Renders a link (<a>) when there is a link, otherwise a normal <button>
+  const Component = link ? "a" : "button";
+
+  // Resume opens in a new tab so visitors can read it and save it
+  const resumeProps = isResume
+    ? { target: "_blank", rel: "noopener noreferrer" }
+    : {};
+
   return (
-    <button
-      className="relative bg-transparent border border-border 
+    <Component
+      href={link}
+      className={`relative inline-block text-center bg-transparent border border-border 
         text-foreground hover:border-primary/50 transition-all 
         duration-1000 focus:outline-none focus-visible:ring-2 
         focus-visible:ring-primary focus-visible:ring-offset-2 
         disabled:opacity-50 disabled:cursor-not-allowed group 
         px-8 py-4 text-lg font-medium rounded-full overflow-visible 
-        animated-border"
+        animated-border ${className}`}
+      {...resumeProps}
+      {...props}
     >
       {/* Animated SVG Border */}
       <svg
@@ -30,11 +54,17 @@ export const AnimatedBorderButton = ({ children }) => {
           className="animated-border-path"
         />
       </svg>
+
       <span className="relative z-10 flex items-center justify-center gap-2">
-        {children}
-        <Download className="w-5 h-5" />
-        Download Resume
+        {isResume ? (
+          <>
+            <Download className="w-5 h-5" />
+            Download Resume
+          </>
+        ) : (
+          children
+        )}
       </span>
-    </button>
+    </Component>
   );
 };

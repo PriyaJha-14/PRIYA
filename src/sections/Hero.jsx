@@ -1,10 +1,10 @@
+import { useMemo } from "react";
 import { Button } from "@/components/Button";
 import {
   ArrowRight,
   ChevronDown,
   Github,
   Linkedin,
-  Download,
   Mail,
 } from "lucide-react";
 import { AnimatedBorderButton } from "../components/AnimatedBorderButton";
@@ -38,13 +38,25 @@ const skills = [
 ];
 
 export const Hero = () => {
+  // Generate dot positions once so they don't jump on every re-render
+  const dots = useMemo(
+    () =>
+      [...Array(30)].map(() => ({
+        left: `${Math.random() * 100}%`,
+        top: `${Math.random() * 100}%`,
+        duration: 15 + Math.random() * 20,
+        delay: Math.random() * 5,
+      })),
+    []
+  );
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Bg */}
       <div className="absolute inset-0">
         <img
           src="/hero-bg.jpg"
-          alt="Hero image"
+          alt="Hero background"
           className="w-full h-full object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/80 to-background" />
@@ -52,16 +64,16 @@ export const Hero = () => {
 
       {/* Green Dots */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, i) => (
+        {dots.map((dot, i) => (
           <div
+            key={i}
             className="absolute w-1.5 h-1.5 rounded-full opacity-60"
             style={{
               backgroundColor: "#20B2A6",
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `slow-drift ${15 + Math.random() * 20
-                }s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 5}s`,
+              left: dot.left,
+              top: dot.top,
+              animation: `slow-drift ${dot.duration}s ease-in-out infinite`,
+              animationDelay: `${dot.delay}s`,
             }}
           />
         ))}
@@ -75,7 +87,7 @@ export const Hero = () => {
             <div className="animate-fade-in">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                ● Data Analyst · SQL · Python · Power BI
+                Data Analyst · SQL · Python · Power BI
               </span>
             </div>
 
@@ -103,32 +115,37 @@ export const Hero = () => {
               <Button size="lg">
                 Contact Me <ArrowRight className="w-5 h-5" />
               </Button>
-              <AnimatedBorderButton>
-                <Download className="w-5 h-5" />
-                Download Resume
-              </AnimatedBorderButton>
+
+              {/* Resume button: opens /Priya_Jha_Resume.pdf from the public folder */}
+              <AnimatedBorderButton variant="resume" />
             </div>
- 
+
             {/* Social Links */}
             <div className="flex items-center gap-4 animate-fade-in animation-delay-400">
               <span className="text-sm text-muted-foreground">Connect: </span>
               {[
                 { icon: Github, href: "https://github.com/PriyaJha-14" },
-                { icon: Linkedin, href: "https://www.linkedin.com/in/priya-jha-b5667a237/?isSelfProfile=true" },
-                { icon: Mail, href: "pjha63172@gmail.com" },
+                {
+                  icon: Linkedin,
+                  href: "https://www.linkedin.com/in/priya-jha-b5667a237/",
+                },
+                { icon: Mail, href: "mailto:pjha63172@gmail.com" },
               ].map((social, idx) => (
                 <a
                   key={idx}
                   href={social.href}
+                  target={social.href.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
                   className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
                 >
-                  {<social.icon className="w-5 h-5" />}
+                  <social.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
           </div>
+
           {/* Right Column - Profile Image */}
-          <div className="relatice animate-fade-in animation-delay-300">
+          <div className="relative animate-fade-in animation-delay-300">
             {/* Profile Image */}
             <div className="relative max-w-md mx-auto">
               <div
@@ -139,7 +156,7 @@ export const Hero = () => {
               />
               <div className="relative glass rounded-3xl p-2 glow-border">
                 <img
-                  src="/profile-photo.png"
+                  src="/profile-photo.jpg"
                   alt="Priya Jha"
                   className="w-full aspect-[4/5] object-cover rounded-2xl"
                 />
@@ -153,11 +170,12 @@ export const Hero = () => {
                     </span>
                   </div>
                 </div>
+
                 {/* Stats Badge */}
                 <div className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3 animate-float animation-delay-500">
                   <div className="text-2xl font-bold text-primary">5+</div>
                   <div className="text-xs text-muted-foreground">
-                   Projects Built.
+                    Projects Built
                   </div>
                 </div>
               </div>
@@ -192,6 +210,7 @@ export const Hero = () => {
         </div>
       </div>
 
+      {/* Scroll Indicator */}
       <div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 
       animate-fade-in animation-delay-800"

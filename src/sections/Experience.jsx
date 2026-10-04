@@ -1,6 +1,6 @@
 const experiences = [
   {
-    period: "Data Analytics Internship",
+    period: "May 2026 – Jun 2026",
     role: "Data Analytics Intern",
     company: "ElevanceSkills",
     description:
@@ -29,7 +29,6 @@ export const Experience = () => {
       />
 
       <div className="container mx-auto px-6 relative z-10">
-
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <span
@@ -61,7 +60,6 @@ export const Experience = () => {
 
         {/* Timeline */}
         <div className="relative">
-
           {/* Timeline Line */}
           <div
             className="timeline-glow absolute left-0 md:left-1/2
@@ -73,7 +71,6 @@ export const Experience = () => {
 
           {/* Experience Items */}
           <div className="space-y-12">
-
             {experiences.map((exp, idx) => (
               <div
                 key={idx}
@@ -82,7 +79,6 @@ export const Experience = () => {
                   animationDelay: `${(idx + 1) * 150}ms`,
                 }}
               >
-
                 {/* Timeline Dot */}
                 <div
                   className="absolute left-0 md:left-1/2 top-0
@@ -97,47 +93,36 @@ export const Experience = () => {
                   )}
                 </div>
 
-                {/* Content */}
+                {/* Content: cards alternate sides, but all text stays left-aligned */}
                 <div
                   className={`pl-8 md:pl-0 ${
-                    idx % 2 === 0
-                      ? "md:pr-16 md:text-right"
-                      : "md:col-start-2 md:pl-16"
+                    idx % 2 === 0 ? "md:pr-16" : "md:col-start-2 md:pl-16"
                   }`}
                 >
                   <div
-                    className="glass p-6 rounded-2xl
+                    className="glass p-6 rounded-2xl text-left
                     border border-primary/30
                     hover:border-primary/50
                     transition-all duration-500"
                   >
-
                     {/* Period */}
                     <span className="text-sm text-primary font-medium">
                       {exp.period}
                     </span>
 
                     {/* Role */}
-                    <h3 className="text-xl font-semibold mt-2">
-                      {exp.role}
-                    </h3>
+                    <h3 className="text-xl font-semibold mt-2">{exp.role}</h3>
 
                     {/* Company */}
-                    <p className="text-muted-foreground">
-                      {exp.company}
-                    </p>
+                    <p className="text-muted-foreground">{exp.company}</p>
 
                     {/* Description */}
-                    <p className="text-sm text-muted-foreground mt-4">
+                    <p className="text-sm text-muted-foreground mt-4 leading-relaxed">
                       {exp.description}
                     </p>
 
                     {/* Technologies */}
-                    <div
-                      className={`flex flex-wrap gap-2 mt-4 ${
-                        idx % 2 === 0 ? "md:justify-end" : ""
-                      }`}
-                    >
+                    <div className="flex flex-wrap gap-2 mt-4">
                       {exp.technologies.map((tech, techIdx) => (
                         <span
                           key={techIdx}
@@ -149,13 +134,10 @@ export const Experience = () => {
                         </span>
                       ))}
                     </div>
-
                   </div>
                 </div>
-
               </div>
             ))}
-
           </div>
         </div>
       </div>
