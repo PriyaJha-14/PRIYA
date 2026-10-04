@@ -2,7 +2,7 @@ import { Download } from "lucide-react";
 
 // Path of your resume inside the "public" folder.
 // Change the file name here if yours is different.
-const RESUME_PATH = "/Priya_Jha_Resume_.pdf";
+const RESUME_PATH = "/Priya_Jha_Resume.pdf";
 
 export const AnimatedBorderButton = ({
   children,
