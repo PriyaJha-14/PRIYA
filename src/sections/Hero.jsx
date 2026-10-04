@@ -1,12 +1,5 @@
 import { useMemo } from "react";
-import { Button } from "@/components/Button";
-import {
-  ArrowRight,
-  ChevronDown,
-  Github,
-  Linkedin,
-  Mail,
-} from "lucide-react";
+import { ChevronDown, Github, Linkedin, Mail } from "lucide-react";
 import { AnimatedBorderButton } from "../components/AnimatedBorderButton";
 
 const skills = [
@@ -110,35 +103,43 @@ export const Hero = () => {
               </p>
             </div>
 
-            {/* CTAs */}
+            {/* CTA: only the resume button */}
             <div className="flex flex-wrap gap-4 animate-fade-in animation-delay-300">
-              <Button size="lg">
-                Contact Me <ArrowRight className="w-5 h-5" />
-              </Button>
-
-              {/* Resume button: opens /Priya_Jha_Resume.pdf from the public folder */}
+              {/* Opens /Priya_Jha_Resume.pdf from the public folder */}
               <AnimatedBorderButton variant="resume" />
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center gap-4 animate-fade-in animation-delay-400">
-              <span className="text-sm text-muted-foreground">Connect: </span>
+            <div className="flex items-center gap-5 animate-fade-in animation-delay-400">
+              <span className="text-xl font-semibold text-foreground">
+                Connect:
+              </span>
               {[
-                { icon: Github, href: "https://github.com/PriyaJha-14" },
+                {
+                  icon: Github,
+                  href: "https://github.com/PriyaJha-14",
+                  label: "GitHub",
+                },
                 {
                   icon: Linkedin,
                   href: "https://www.linkedin.com/in/priya-jha-b5667a237/",
+                  label: "LinkedIn",
                 },
-                { icon: Mail, href: "mailto:pjha63172@gmail.com" },
-              ].map((social, idx) => (
+                {
+                  icon: Mail,
+                  href: "mailto:pjha63172@gmail.com",
+                  label: "Email",
+                },
+              ].map((social) => (
                 <a
-                  key={idx}
+                  key={social.label}
                   href={social.href}
+                  aria-label={social.label}
                   target={social.href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
-                  className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                  className="p-3.5 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
                 >
-                  <social.icon className="w-5 h-5" />
+                  <social.icon className="w-7 h-7" />
                 </a>
               ))}
             </div>
